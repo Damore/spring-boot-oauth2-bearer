@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: oauth2-impl
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: gabriel.marciano
+Implementation-Vendor-Id: br.com.oauth
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://projects.spring.io/spring-boot/oauth2/oauth
+ 2-impl/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
