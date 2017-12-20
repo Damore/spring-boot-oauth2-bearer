@@ -8,12 +8,26 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private UsuarioService usuarioPainelService;
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private UsuarioCustomService usuarioCustomService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		UserDetails usuario = null;
-		usuario = usuarioPainelService.findById(username);
+		usuario = usuarioService.findById(username);
+
+		if (usuario == null) {
+			throw new UsernameNotFoundException("user not found");
+		}
+
+		return usuario;
+	}
+	
+	public UserDetails loadUserByCustomUsername(String username) throws UsernameNotFoundException {
+		UserDetails usuario = null;
+		usuario = usuarioCustomService.findById(username);
 
 		if (usuario == null) {
 			throw new UsernameNotFoundException("user not found");

@@ -12,7 +12,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Document
-public class Usuario implements UserDetails {
+public class UsuarioCustom implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -335,4 +335,5 @@ public class Usuario implements UserDetails {
 	public void setFieldToSort(String fieldToSort) {
 		this.fieldToSort = fieldToSort;
 	}
+
 }

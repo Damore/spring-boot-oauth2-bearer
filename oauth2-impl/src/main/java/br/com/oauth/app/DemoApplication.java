@@ -52,6 +52,7 @@ public class DemoApplication {
 		CustomUserDetailsService customUserDetailsService = new CustomUserDetailsService();
 		return customUserDetailsService;
 	}
+	
 
 	/**
 	 * Implementação para autenticação do sistema.

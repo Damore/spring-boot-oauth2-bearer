@@ -22,6 +22,8 @@ import org.springframework.security.oauth2.provider.token.AuthorizationServerTok
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
+import br.com.oauth.service.CustomUserDetailsService;
+
 @Configuration
 @EnableAuthorizationServer
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
@@ -36,11 +38,16 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 	
 	@Autowired
+	private CustomUserDetailsService customUserDetailsService;
+	
+	
+	@Autowired
 	private ClientDetailsService clientDetailsService;
 	
 	@Autowired
 	@Qualifier(value = "authenticationManager")
 	private AuthenticationManager authenticationManager;
+	
 	
 	
 	  @Override
@@ -60,8 +67,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
 	  private TokenGranter tokenGranter(final AuthorizationServerEndpointsConfigurer endpoints) {
 	    List<TokenGranter> granters = new ArrayList<TokenGranter>(Arrays.asList(endpoints.getTokenGranter()));
-/*	    granters.add(new MyTokenGranter(null, endpoints.getTokenServices(), endpoints.getClientDetailsService(),
-	        endpoints.getOAuth2RequestFactory(), "custom"));*/
+	    granters.add(new CustomTokenGranter(endpoints.getTokenServices(), endpoints.getClientDetailsService(), endpoints.getOAuth2RequestFactory(), "custom", customUserDetailsService, passwordEncoder));
 	    return new CompositeTokenGranter(granters);
 	  }
 
