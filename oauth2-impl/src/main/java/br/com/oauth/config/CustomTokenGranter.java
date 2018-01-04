@@ -55,7 +55,7 @@ public class CustomTokenGranter extends AbstractTokenGranter {
 		if(!passwordEncoder.matches(password, loadUserByUsername.getPassword())){
 			throw new BadCredentialsException("Usuário inexistente ou senha inválida");
 		}
-		Authentication user = new UsernamePasswordAuthenticationToken(username, password, authorities);
+		Authentication user = new UsernamePasswordAuthenticationToken(loadUserByUsername, password, authorities);
 		OAuth2Authentication authentication = new OAuth2Authentication(tokenRequest.createOAuth2Request(client), user);
 		return authentication;
 	}
